@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authSlice from "../shared/lib/features/authSlice";
+import signInSlice from "../shared/lib/features/signinSlice";
 
 export const store = configureStore({
   reducer: {
-    fake: () => "laylo"
+    authSlice,
+    signInSlice,
   },
 });
 

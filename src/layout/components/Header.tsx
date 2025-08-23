@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../shared/assets/header/logo.svg";
 import {
   Clapperboard,
@@ -32,6 +32,7 @@ const Header = () => {
     setDarkMode(newMode);
     localStorage.setItem("darkMode", newMode.toString());
   };
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 bg-[#ffffff] dark:bg-[#000000] dark:transition-all transition-all">
       <nav className="container h-20 flex items-center gap-[130px]">
@@ -122,7 +123,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div>
+          <div onClick={() => navigate("register")}>
             <button className="py-[14px] px-[66px] rounded-[12px] bg-[var(--color-py)] text-[white] cursor-pointer hover:opacity-85">
               Login
             </button>

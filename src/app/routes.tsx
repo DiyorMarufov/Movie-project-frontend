@@ -7,7 +7,11 @@ const Movie = lazy(() => import("../pages/movie"));
 const MovieDetail = lazy(() => import("../pages/movie-detail"));
 const Cast = lazy(() => import("../pages/movie-detail/pages/cast"));
 const Crew = lazy(() => import("../pages/movie-detail/pages/crew"));
-const ActorDetail = lazy(()=> import("../pages/actor-detail"))
+const ActorDetail = lazy(() => import("../pages/actor-detail"));
+const Register = lazy(() => import("../pages/register"));
+const Login = lazy(() => import("../pages/login"));
+const VerifyOtp = lazy(() => import("../pages/verify-otp"));
+const Profile = lazy(() => import("../pages/profile"));
 
 const AppRouters = () => {
   return useRoutes([
@@ -25,7 +29,11 @@ const AppRouters = () => {
             { path: "crew", element: <Crew /> },
           ],
         },
-         { path: "actor/:id", element: <ActorDetail/> },
+        { path: "actor/:id", element: <ActorDetail /> },
+        { path: "register", element: <Register /> },
+        { path: "login", element: <Login /> },
+        { path: "otp", element: <VerifyOtp /> },
+        { path: "profile", element: <Profile /> },
       ],
     },
   ]);
