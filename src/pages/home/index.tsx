@@ -50,7 +50,6 @@ const Home = () => {
               "--swiper-pagination-color": "#fff",
             } as React.CSSProperties
           }
-          loop={true}
           navigation={true}
           keyboard={true}
           autoplay={{ delay: 3000, disableOnInteraction: false }}

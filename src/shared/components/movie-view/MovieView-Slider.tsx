@@ -33,7 +33,6 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
     <div className={`${className}`}>
       <div className="container">
         <Swiper
-          loop={true}
           slidesPerView={4}
           spaceBetween={20}
           navigation={true}
