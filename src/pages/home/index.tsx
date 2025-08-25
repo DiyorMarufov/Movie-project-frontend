@@ -1,7 +1,6 @@
 import { memo } from "react";
 import { Play } from "lucide-react";
 import TopWeeks from "../../shared/components/top-weeks/TopWeeks";
-import MovieView from "../../shared/components/movie-view/MovieView";
 import { useFullMovieData } from "../../shared/hooks/getGenres";
 import { IMAGE_URL } from "../../shared/const";
 
@@ -26,6 +25,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "../../index.css";
 import SkeletonHero from "../../shared/components/ui/SkeletonHero";
 import { useNavigate } from "react-router-dom";
+import MovieViewSlider from "../../shared/components/movie-view/MovieView-Slider";
 
 export interface IPosterMovie {
   id: number | string;
@@ -44,6 +44,12 @@ const Home = () => {
     <section>
       <div className="container-hero relative hero">
         <Swiper
+          style={
+            {
+              "--swiper-navigation-color": "#fff",
+              "--swiper-pagination-color": "#fff",
+            } as React.CSSProperties
+          }
           loop={true}
           navigation={true}
           keyboard={true}
@@ -96,7 +102,7 @@ const Home = () => {
       </div>
 
       <TopWeeks text="This weekend" showAll="Show all" />
-      <MovieView data={data} isLoading={isLoading} />
+      <MovieViewSlider data={data} isLoading={isLoading} />
     </section>
   );
 };

@@ -24,7 +24,8 @@
 .hero::-webkit-scrollbar,
 .actors::-webkit-scrollbar,
 .actor-images::-webkit-scrollbar,
-.cast::-webkit-scrollbar {
+.cast::-webkit-scrollbar,
+.movie-swiper::-webkit-scrollbar {
   display: none;
 }
 
@@ -48,4 +49,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.custom-swiper-nav .swiper-button-prev,
+.custom-swiper-nav .swiper-button-next {
+  top: 220px;
+  transform: translateY(0);
+  z-index: 10;
+}
+
+.custom-swiper-nav .swiper-button-prev {
+  left: 1;
+}
+
+.custom-swiper-nav .swiper-button-next {
+  right: 1;
 }
