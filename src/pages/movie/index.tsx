@@ -60,6 +60,8 @@ const Movie = () => {
               placeholder="Select genre"
               style={{ width: 120 }}
               options={genres}
+              className="custom-dark-select"
+              dropdownClassName="dark-dropdown"
             />
           </div>
           <div>
@@ -71,12 +73,15 @@ const Movie = () => {
               placeholder="Select period"
               style={{ width: 120 }}
               options={Period}
+              className="custom-dark-select"
+              dropdownClassName="dark-dropdown"
             />
           </div>
         </div>
         <MovieView data={data} className="pt-5" isLoading={isLoading} />;
         <div className="flex justify-center">
           <Pagination
+          className="custom-dark-button"
             current={Number(page)}
             total={
               totalMovies?.total_results > 10000

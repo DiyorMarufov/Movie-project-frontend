@@ -65,3 +65,77 @@
 .custom-swiper-nav .swiper-button-next {
   right: 1;
 }
+
+.dark .dark-dropdown {
+  background-color: #1f1f1f !important;
+  color: white;
+  transition: all;
+}
+
+.dark .dark-dropdown .ant-select-item-option {
+  color: white !important;
+  transition: all;
+}
+
+.dark .dark-dropdown .ant-select-item-option-active {
+  background-color: #434343 !important;
+  transition: all;
+}
+
+.dark .custom-dark-select .ant-select-selector {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #434343 !important;
+  transition: all;
+}
+
+.dark .custom-dark-select .ant-select-selection-placeholder {
+  color: #a1a1a1 !important;
+  transition: all;
+}
+
+.dark .custom-dark-dropdown {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  transition: all;
+}
+
+.dark .custom-dark-dropdown .ant-select-item-option {
+  color: #ffffff !important;
+  transition: all;
+}
+
+.dark .custom-dark-dropdown .ant-select-item-option-active {
+  background-color: #434343 !important;
+  transition: all;
+}
+
+.dark .custom-dark-button .ant-pagination-item,
+.dark .custom-dark-button .ant-pagination-item a {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #434343 !important;
+}
+
+.dark .custom-dark-button .ant-pagination-item-active,
+.dark .custom-dark-button .ant-pagination-item-active a {
+  background-color: #1a1a1a !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.dark .custom-dark-button .ant-pagination-prev,
+.dark .custom-dark-button .ant-pagination-next {
+  background-color: #000000 !important;
+  border-color: #434343 !important;
+}
+
+.dark .custom-dark-button .ant-pagination-prev button,
+.dark .custom-dark-button .ant-pagination-next button {
+  color: #ffffff !important;
+}
+
+.dark .custom-dark-button .ant-pagination-jump-next,
+.dark .custom-dark-button .ant-pagination-jump-prev {
+  color: #ffffff !important;
+}

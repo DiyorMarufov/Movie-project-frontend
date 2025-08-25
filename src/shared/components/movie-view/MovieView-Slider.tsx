@@ -33,7 +33,6 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
     <div className={`${className}`}>
       <div className="container">
         <Swiper
-          slidesPerView={4}
           spaceBetween={20}
           navigation={true}
           modules={[Navigation]}
@@ -44,16 +43,30 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
               "--swiper-pagination-color": "#fff",
             } as React.CSSProperties
           }
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+            },
+            500: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {isLoading && <Skeleton />}
-          <div className="flex gap-5 overflow-auto movie-swiper">
+          <div className="grid grid-cols-4 gap-5 overflow-auto movie-swiper">
             {data?.map((movie: any) => (
               <SwiperSlide key={movie.id} className="cursor-pointer">
                 <div
                   onClick={() => {
                     navigate(`/movie/${movie.id}`);
                   }}
-                  className="h-[450px] w-full overflow-hidden relative"
+                  className="h-[450px] overflow-hidden relative"
                 >
                   <img
                     loading="lazy"
@@ -63,7 +76,7 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
                         : defaultImg
                     }
                     alt={movie.title}
-                    className="h-full min-w-[280px] object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
                     onMouseEnter={() => setShowYearId(movie.id)}
                     onMouseLeave={() => setShowYearId(null)}
                   />
