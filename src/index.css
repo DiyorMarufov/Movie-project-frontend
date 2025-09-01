@@ -53,7 +53,7 @@
 
 .custom-swiper-nav .swiper-button-prev,
 .custom-swiper-nav .swiper-button-next {
-  @apply absolute top-[45%] -translate-y-1/2 z-10 text-white;
+  @apply absolute top-[46%] -translate-y-1/2 z-10 text-white;
 }
 
 @media (max-width: 640px) {

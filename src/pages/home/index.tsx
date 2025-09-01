@@ -38,7 +38,7 @@ export interface IPosterMovie {
 }
 
 const Home = () => {
-  const { data, isLoading } = useFullMovieData();
+  const { data, isLoading } = useFullMovieData("discover");
   const navigate = useNavigate();
   return (
     <section>

@@ -4,13 +4,25 @@ import { api } from "../api";
 export const getSimilarMovieActors = () =>
   api.get("genre/movie/list").then((res) => res.data.genres);
 
-const getPopularMovies = (id: number, path: string) =>
-  api.get(`person/${id}/${path}`).then((res) => res.data.cast ?? []);
+const getPopularMovies = (
+  typePath: string,
+  id: number,
+  value: string,
+  path?: string
+) =>
+  api
+    .get(`${typePath}/${id}/${path}`)
+    .then((res) => res.data[`${value}`] ?? []);
 
-const fetchMoviesWithGenres = async (id: number, path: string) => {
+const fetchMoviesWithGenres = async (
+  typePath: string,
+  id: number,
+  value: string,
+  path?: string
+) => {
   const [genres, movies] = await Promise.all([
     getSimilarMovieActors(),
-    getPopularMovies(id, path),
+    getPopularMovies(typePath, id, value, path),
   ]);
 
   const genreMap = Object.fromEntries(genres.map((g: any) => [g.id, g.name]));
@@ -21,10 +33,15 @@ const fetchMoviesWithGenres = async (id: number, path: string) => {
   }));
 };
 
-export const useFullMovieData = (id: number, path: string) => {
+export const useSimilarMovieData = (
+  typePath: string,
+  id: number,
+  value: string,
+  path?: string
+) => {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["movies-with-genres", id, path],
-    queryFn: () => fetchMoviesWithGenres(id, path),
+    queryKey: ["movies-with-genres", typePath, id, value, path],
+    queryFn: () => fetchMoviesWithGenres(typePath, id, value, path),
     enabled: !!id && !!path,
   });
 

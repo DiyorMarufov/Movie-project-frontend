@@ -2,14 +2,13 @@ import { memo, useEffect } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { IMAGE_URL } from "../../shared/const";
 import Title from "../../shared/components/ui/title";
-import TopWeeks from "../../shared/components/top-weeks/TopWeeks";
 import MovieView from "../../shared/components/movie-view/MovieView";
-import { useFullMovieData } from "../../shared/hooks/getGenres";
 import { Image } from "antd";
 import { Calendar, Plus, Star, Timer } from "lucide-react";
 import SkeletonMovieDetail from "../../shared/components/ui/SkeletonMovieDetail";
 import SkeletonImages from "../../shared/components/ui/SkeletonImages";
 import { useMovie } from "../movie/services/useMovie";
+import { useSimilarMovieData } from "../../shared/hooks/getSimilarMovieActors";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -19,8 +18,12 @@ const MovieDetail = () => {
     id || "",
     "images"
   );
-  const { data: movieViews } = useFullMovieData();
-
+  const { data: movieViews } = useSimilarMovieData(
+    "movie",
+    Number(id),
+    "results",
+    "similar"
+  );
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -136,26 +139,39 @@ const MovieDetail = () => {
 
         <div className="mt-[30px]">
           <div className="flex gap-10">
-            <NavLink to={""}>
-              <Title
-                text="Cast"
-                className={`text-[#000000] cursor-pointer select-none dark:text-[#ffffff] dark:hover:text-[var(--color-py)] dark:transition-all transition-all`}
-              />
+            <NavLink
+              end
+              className={({ isActive }) =>
+                `${
+                  isActive
+                    ? "text-[var(--color-py)]"
+                    : "text-[#000000] dark:text-[#ffffff]"
+                }`
+              }
+              to={""}
+            >
+              <Title text="Cast" className={`select-none`} />
             </NavLink>
 
-            <NavLink to={"crew"}>
-              <Title
-                text="Crew"
-                className="text-[#000000] cursor-pointer select-none dark:text-[#ffffff] dark:hover:text-[var(--color-py)] dark:transition-all transition-all"
-              />
+            <NavLink
+              className={({ isActive }) =>
+                `${
+                  isActive
+                    ? "text-[var(--color-py)]"
+                    : "text-[#000000] dark:text-[#ffffff]"
+                }`
+              }
+              to={"crew"}
+            >
+              <Title text="Crew" className="select-none" />
             </NavLink>
           </div>
 
           <Outlet />
         </div>
 
-        <TopWeeks text="This weekend" showAll="Show all" />
-        <MovieView data={movieViews} isLoading={isLoading} />
+        <Title className="pt-7" text="Similar movies" />
+        <MovieView className="pt-2" data={movieViews} isLoading={isLoading} />
       </div>
     </section>
   );

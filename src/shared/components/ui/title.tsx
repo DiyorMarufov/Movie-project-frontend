@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Title: FC<Props> = ({ text, className }) => {
-  return <h1 className={`font-medium text-[20px] ${className}`}>{text}</h1>;
+  return <h1 className={`font-medium text-[18px] ${className}`}>{text}</h1>;
 };
 
 export default memo(Title);

@@ -17,7 +17,7 @@ const Movie = () => {
   const item = Period.find((item) => item.value === Number(period));
   const { getMovies } = useMovie();
   const { data: totalMovies } = getMovies();
-  const { data, isLoading } = useFullMovieData({
+  const { data, isLoading } = useFullMovieData("discover", {
     page,
     with_genres,
     "release_date.gte": item?.gte,
@@ -77,11 +77,29 @@ const Movie = () => {
               dropdownClassName="dark-dropdown"
             />
           </div>
+
+          <div>
+            <h1 className="text-[16px] text-[#A1A1A1] pb-1 select-none">
+              Country
+            </h1>
+            <Select
+              onChange={handleChangePeriod}
+              placeholder="Select country"
+              style={{ width: 120 }}
+              className="custom-dark-select"
+              dropdownClassName="dark-dropdown"
+            />
+          </div>
         </div>
-        <MovieView data={data} className="pt-5" isLoading={isLoading} />;
+        <MovieView
+          data={data}
+          className="container pt-5"
+          isLoading={isLoading}
+        />
+        ;
         <div className="flex justify-center">
           <Pagination
-          className="custom-dark-button"
+            className="custom-dark-button"
             current={Number(page)}
             total={
               totalMovies?.total_results > 10000

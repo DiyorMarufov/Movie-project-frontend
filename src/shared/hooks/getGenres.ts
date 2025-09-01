@@ -12,13 +12,13 @@ interface IParams {
 export const getGenres = () =>
   api.get("genre/movie/list").then((res) => res.data.genres);
 
-const getPopularMovies = (params?: IParams) =>
-  api.get("discover/movie", { params }).then((res) => res.data.results);
+const getPopularMovies = (path: string, params?: IParams) =>
+  api.get(`${path}/movie`, { params }).then((res) => res.data.results);
 
-const fetchMoviesWithGenres = async (params?: IParams) => {
+const fetchMoviesWithGenres = async (path: string, params?: IParams) => {
   const [genres, movies] = await Promise.all([
     getGenres(),
-    getPopularMovies(params),
+    getPopularMovies(path, params),
   ]);
 
   const genreMap = Object.fromEntries(genres.map((g: any) => [g.id, g.name]));
@@ -29,8 +29,8 @@ const fetchMoviesWithGenres = async (params?: IParams) => {
   }));
 };
 
-export const useFullMovieData = (params?: IParams) =>
+export const useFullMovieData = (path: string, params?: IParams) =>
   useQuery({
-    queryKey: ["movies-with-genres", params],
-    queryFn: () => fetchMoviesWithGenres(params),
+    queryKey: ["movies-with-genres", path, params],
+    queryFn: () => fetchMoviesWithGenres(path, params),
   });

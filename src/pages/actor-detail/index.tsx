@@ -6,8 +6,8 @@ import { Image } from "antd";
 import SkeletonActorDetail from "../../shared/components/ui/SkeletonActorDetail";
 import Title from "../../shared/components/ui/title";
 import MovieViewSlider from "../../shared/components/movie-view/MovieView-Slider";
-import { useFullMovieData } from "../../shared/hooks/getSimilarMovieActors";
 import Skeleton from "../../shared/components/ui/Skeleton";
+import { useSimilarMovieData } from "../../shared/hooks/getSimilarMovieActors";
 
 export interface IActorDetail {
   id: number;
@@ -28,7 +28,7 @@ const ActorDetail = () => {
 
   const { data: actorImages } = getActorItemsById(Number(id), "images");
   const { data: similarActorMovies, isLoading: similarActorLoading } =
-    useFullMovieData(Number(id), "movie_credits");
+    useSimilarMovieData("person", Number(id), "cast", "movie_credits");
   const [showMore, setShowMore] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   let lines = 11;
