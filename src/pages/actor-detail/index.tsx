@@ -7,6 +7,7 @@ import SkeletonActorDetail from "../../shared/components/ui/SkeletonActorDetail"
 import Title from "../../shared/components/ui/title";
 import MovieViewSlider from "../../shared/components/movie-view/MovieView-Slider";
 import { useFullMovieData } from "../../shared/hooks/getSimilarMovieActors";
+import Skeleton from "../../shared/components/ui/Skeleton";
 
 export interface IActorDetail {
   id: number;
@@ -163,6 +164,7 @@ const ActorDetail = () => {
             text="Similar"
             className="text-[#000000] dark:text-[var(--color-py)] mt-[50px]"
           />
+          {similarActorLoading && <Skeleton />}
           <MovieViewSlider
             data={similarActorMovies}
             isLoading={similarActorLoading}
