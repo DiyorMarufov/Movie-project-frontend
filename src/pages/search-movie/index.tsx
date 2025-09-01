@@ -34,7 +34,7 @@ const SearchMovie = () => {
           placeholder="Search..."
           value={searchInput}
           onChange={handleChange}
-          className="max-w-[500px]!"
+          className="max-w-[500px]! dark:bg-[#000000]! dark:border-gray-600 dark:placeholder:text-gray-400! dark:text-gray-400!"
         />
       </div>
       {data?.length > 0 ? (

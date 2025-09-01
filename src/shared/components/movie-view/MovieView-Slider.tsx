@@ -18,6 +18,11 @@ import "swiper/css/pagination";
 import "../../../index.css";
 
 import { Navigation } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../lib/features/favoriteSlice";
+import { toggleLikes } from "../../lib/features/likesSlice";
+import type { RootState } from "../../../app/store";
+import { Bookmark } from "lucide-react";
 
 interface Props {
   data: any;
@@ -28,6 +33,14 @@ interface Props {
 const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
   const navigate = useNavigate();
   const [showYearId, setShowYearId] = useState<number | null>(null);
+
+  const likes = useSelector((state: RootState) => state.toggleLikes.value);
+  const dispatch = useDispatch();
+
+  const toggleMovie = (movie: any) => {
+    dispatch(toggleFavorite(movie));
+    dispatch(toggleLikes(movie.id));
+  };
   return (
     <div className={`${className} pt-2`}>
       <div>
@@ -54,9 +67,6 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
           {data?.map((movie: any) => (
             <SwiperSlide key={movie.id} className="cursor-pointer">
               <div
-                onClick={() => {
-                  navigate(`/movie/${movie.id}`);
-                }}
                 className="
             relative overflow-hidden
             group aspect-[2/3]"
@@ -75,6 +85,9 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
               hover:scale-105"
                   onMouseEnter={() => setShowYearId(movie.id)}
                   onMouseLeave={() => setShowYearId(null)}
+                  onClick={() => {
+                    navigate(`/movie/${movie.id}`);
+                  }}
                 />
 
                 {showYearId === movie.id && (
@@ -82,9 +95,27 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
                     <h1>{movie?.release_date.split("-")[0]}</h1>
                   </div>
                 )}
+
+                <div
+                  onClick={() => toggleMovie(movie)}
+                  className="absolute top-1 right-1 p-2 bg-[var(--color-py)] rounded-[100px] hover:opacity-80"
+                >
+                  <Bookmark
+                    className={`text-[#ffffff] ${
+                      likes.includes(movie.id)
+                        ? "fill-[#ffffff]"
+                        : "fill-[var(--color-py)]"
+                    }`}
+                  />
+                </div>
               </div>
 
-              <div className="bg-white dark:bg-black px-1 py-2">
+              <div
+                className="bg-white dark:bg-black px-1 py-2"
+                onClick={() => {
+                  navigate(`/movie/${movie.id}`);
+                }}
+              >
                 <h3
                   className="font-medium line-clamp-1
               text-[16px] sm:text-[18px] md:text-[20px] lg:text-[23px] 

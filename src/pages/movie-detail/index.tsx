@@ -4,11 +4,15 @@ import { IMAGE_URL } from "../../shared/const";
 import Title from "../../shared/components/ui/title";
 import MovieView from "../../shared/components/movie-view/MovieView";
 import { Image } from "antd";
-import { Calendar, Plus, Star, Timer } from "lucide-react";
+import { Calendar, Check, Plus, Star, Timer } from "lucide-react";
 import SkeletonMovieDetail from "../../shared/components/ui/SkeletonMovieDetail";
 import SkeletonImages from "../../shared/components/ui/SkeletonImages";
 import { useMovie } from "../movie/services/useMovie";
 import { useSimilarMovieData } from "../../shared/hooks/getSimilarMovieActors";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
+import { toggleFavorite } from "../../shared/lib/features/favoriteSlice";
+import { toggleLikes } from "../../shared/lib/features/likesSlice";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -27,6 +31,14 @@ const MovieDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  const likes = useSelector((state: RootState) => state.toggleLikes.value);
+  const dispatch = useDispatch();
+
+  const toggleMovie = (movie: any) => {
+    dispatch(toggleFavorite(movie));
+    dispatch(toggleLikes(movie.id));
+  };
 
   return (
     <section className="pt-[20px]">
@@ -52,8 +64,20 @@ const MovieDetail = () => {
                 >
                   {data?.title}
                 </h1>
-                <button className="flex items-center gap-2 p-[16px] rounded-[15px] text-[#ffffff] bg-[var(--color-py)] cursor-pointer hover:opacity-85">
-                  <Plus /> Add to Favourite
+                <button
+                  onClick={() => toggleMovie(data)}
+                  className="flex items-center gap-2 p-[16px] rounded-[15px] text-[#ffffff] bg-[var(--color-py)] cursor-pointer hover:opacity-85"
+                >
+                  {!likes.includes(data.id) ? (
+                    <div className="flex items-center gap-2">
+                      <Plus /> <span>Add to favorite</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <span>Added to favorite</span>
+                      <Check />
+                    </div>
+                  )}
                 </button>
               </div>
 
