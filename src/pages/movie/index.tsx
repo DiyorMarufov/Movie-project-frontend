@@ -50,7 +50,7 @@ const Movie = () => {
   return (
     <>
       <section>
-        <div className="container flex gap-10">
+        <div className="container flex flex-wrap gap-5">
           <div>
             <h1 className="text-[16px] text-[#A1A1A1] pb-1 select-none">
               Genre

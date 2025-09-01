@@ -29,8 +29,8 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
   const navigate = useNavigate();
   const [showYearId, setShowYearId] = useState<number | null>(null);
   return (
-    <div className={`${className}`}>
-      <div className="container">
+    <div className={`${className} pt-2`}>
+      <div>
         <Swiper
           spaceBetween={20}
           navigation={true}
@@ -59,7 +59,7 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
                 }}
                 className="
             relative overflow-hidden
-            min-h-[220px] sm:min-h-[280px] md:min-h-[330px] lg:min-h-[400px]"
+            group aspect-[2/3]"
               >
                 <img
                   loading="lazy"
@@ -78,12 +78,7 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
                 />
 
                 {showYearId === movie.id && (
-                  <div
-                    className="absolute top-2 left-2 px-2 bg-[var(--color-py)] 
-                text-white text-sm"
-                    onMouseEnter={() => setShowYearId(movie.id)}
-                    onMouseLeave={() => setShowYearId(null)}
-                  >
+                  <div className="absolute top-2 left-2 px-2 bg-[var(--color-py)] text-white rounded-[10px] text-sm">
                     <h1>{movie?.release_date.split("-")[0]}</h1>
                   </div>
                 )}
@@ -91,7 +86,7 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
 
               <div className="bg-white dark:bg-black px-1 py-2">
                 <h3
-                  className="font-medium line-clamp-1 
+                  className="font-medium line-clamp-1
               text-[16px] sm:text-[18px] md:text-[20px] lg:text-[23px] 
               dark:text-white transition-all"
                   title={movie.title}

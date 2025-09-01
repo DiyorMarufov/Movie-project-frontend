@@ -28,7 +28,6 @@ const ActorDetail = () => {
   const { data: actorImages } = getActorItemsById(Number(id), "images");
   const { data: similarActorMovies, isLoading: similarActorLoading } =
     useFullMovieData(Number(id), "movie_credits");
-  console.log(similarActorMovies);
   const [showMore, setShowMore] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   let lines = 11;
@@ -41,9 +40,7 @@ const ActorDetail = () => {
     const updateVisibleCount = () => {
       const width = window.innerWidth;
 
-      if (width < 600) {
-        setVisibleCount(1);
-      } else if (width <= 900) {
+      if (width <= 900) {
         setVisibleCount(2);
       } else if (width <= 1210) {
         setVisibleCount(3);
@@ -92,7 +89,7 @@ const ActorDetail = () => {
                   onClick={() => setShowMoreInfo((p) => !p)}
                   className="text-[#ffffff] bg-[#000000] dark:bg-[var(--color-py)] dark:text-[#ffffff] dark:border-none dark:transition-all transition-all w-[90px] h-[30px] rounded-[5px] cursor-pointer hover:opacity-85"
                 >
-                  {!showMoreInfo ? "Show more" : "Show less"}
+                  {!showMoreInfo ? "Read more" : "Hide"}
                 </button>
               </div>
 
@@ -136,7 +133,7 @@ const ActorDetail = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-5 pt-10 actor-images max-[1210px]:grid-cols-3 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1">
+          <div className="grid grid-cols-4 gap-5 pt-10 actor-images max-[1210px]:grid-cols-3 max-[900px]:grid-cols-2">
             {actorImages?.profiles
               ?.slice(
                 0,
@@ -158,7 +155,7 @@ const ActorDetail = () => {
                 onClick={() => setShowMore((p) => !p)}
                 className="text-[#ffffff] bg-[#000000] mt-10 rounded-[5px] h-[40px] w-[120px] hover:opacity-85 cursor-pointer dark:bg-[var(--color-py)] dark:text-[#ffffff] dark:transition-all transition-all"
               >
-                {!showMore ? "Read more" : "Hide"}
+                {!showMore ? "Show more" : "Hide"}
               </button>
             </div>
           )}

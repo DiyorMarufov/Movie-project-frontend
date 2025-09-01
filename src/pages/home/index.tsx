@@ -101,7 +101,7 @@ const Home = () => {
       </div>
 
       <TopWeeks text="This weekend" showAll="Show all" />
-      <MovieViewSlider data={data} isLoading={isLoading} />
+      <MovieViewSlider data={data} className="container" isLoading={isLoading} />
     </section>
   );
 };

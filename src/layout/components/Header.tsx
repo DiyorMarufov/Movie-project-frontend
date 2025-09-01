@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../shared/assets/header/logo.svg";
 import {
   Clapperboard,
@@ -32,18 +32,16 @@ const Header = () => {
     setDarkMode(newMode);
     localStorage.setItem("darkMode", newMode.toString());
   };
-  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 bg-[#ffffff] dark:bg-[#000000] dark:transition-all transition-all">
-      <nav className="container h-20 flex items-center gap-[130px]">
-        <div className="flex justify-between items-center w-[65%] dark:text-[#A1A1A1] dark:transition-all transition-all">
+      <nav className="container h-20 flex justify-between items-center">
           <div>
             <NavLink to={"/"}>
               <img src={logo} alt="" />
             </NavLink>
           </div>
 
-          <ul className="flex max-[1100px]:hidden">
+          <ul className="flex max-[700px]:hidden">
             <li className="px-4.5">
               <NavLink
                 end={true}
@@ -107,9 +105,8 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-        </div>
 
-        <div className="flex items-center gap-3 max-[1100px]:hidden">
+        <div className="flex items-center gap-3 max-[700px]:hidden">
           <div className="relative inline-block px-4 py-2">
             <select className="appearance-none bg-transparent pr-6 pl-2 py-1 text-sm font-medium text-gray-800 focus:outline-none dark:text-[var(--color-py)] dark:transition-all transition-all">
               <option value="eng" selected>
@@ -123,11 +120,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div onClick={() => navigate("register")}>
-            <button className="py-[14px] px-[66px] rounded-[12px] bg-[var(--color-py)] text-[white] cursor-pointer hover:opacity-85">
-              Login
-            </button>
-          </div>
+          
 
           <div className="cursor-pointer select-none" onClick={handleMode}>
             {!darkMode ? (
@@ -138,7 +131,7 @@ const Header = () => {
           </div>
         </div>
 
-        <Menu className="min-[1100px]:hidden ml-auto" />
+        <Menu className="min-[700px]:hidden ml-auto" />
       </nav>
     </header>
   );

@@ -4,7 +4,7 @@ const SkeletonActorDetail = () => {
   return (
     <section className="pt-7 animate-pulse dark:bg-[#000000]">
       <div className="container flex flex-col">
-        <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden gap-8 dark:bg-[#000000]">
+        <div className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden gap-8 dark:bg-[#000000]">
           <div className="flex-shrink-0 w-full md:w-1/3">
             <div className="w-full h-[600px] bg-gray-300 dark:bg-gray-700 rounded-lg" />
           </div>

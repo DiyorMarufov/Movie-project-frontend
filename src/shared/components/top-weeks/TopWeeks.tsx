@@ -9,7 +9,7 @@ interface Props {
 
 const TopWeeks: FC<Props> = ({ text, showAll }) => {
   return (
-    <div className="container mt-[50px] mb-[20px]">
+    <div className="container mt-[50px]">
       <div className="flex justify-between">
         <Title
           text={text}

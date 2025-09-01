@@ -12,7 +12,7 @@ const Skeleton: FC<Props> = ({ count = 20 }) => {
           .fill(" ")
           ?.map((_, index) => (
             <div key={index}>
-              <div className="h-[450px] w-full bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+              <div className="group aspect-[2/3] bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"></div>
               <div className="pt-2">
                 <div className="w-[70%] h-7 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"></div>
                 <div className="w-[80%] h-5 bg-gray-300 dark:bg-gray-700 mt-2 rounded-lg animate-pulse"></div>

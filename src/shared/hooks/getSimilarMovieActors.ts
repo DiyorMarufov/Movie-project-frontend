@@ -5,7 +5,7 @@ export const getSimilarMovieActors = () =>
   api.get("genre/movie/list").then((res) => res.data.genres);
 
 const getPopularMovies = (id: number, path: string) =>
-  api.get(`person/${id}/${path}`).then((res) => res.data.results);
+  api.get(`person/${id}/${path}`).then((res) => res.data.cast ?? []);
 
 const fetchMoviesWithGenres = async (id: number, path: string) => {
   const [genres, movies] = await Promise.all([
