@@ -4,6 +4,9 @@ import { IMAGE_URL } from "../../shared/const";
 import { useActors } from "./services";
 import { Image } from "antd";
 import SkeletonActorDetail from "../../shared/components/ui/SkeletonActorDetail";
+import Title from "../../shared/components/ui/title";
+import MovieViewSlider from "../../shared/components/movie-view/MovieView-Slider";
+import { useFullMovieData } from "../../shared/hooks/getSimilarMovieActors";
 
 export interface IActorDetail {
   id: number;
@@ -19,11 +22,13 @@ export interface IActorDetail {
 const ActorDetail = () => {
   const { id } = useParams();
 
-  const { getActorById, getActorImagesById } = useActors();
+  const { getActorById, getActorItemsById } = useActors();
   const { data, isLoading } = getActorById(Number(id));
 
-  const { data: actorImages } = getActorImagesById(Number(id), "images");
-
+  const { data: actorImages } = getActorItemsById(Number(id), "images");
+  const { data: similarActorMovies, isLoading: similarActorLoading } =
+    useFullMovieData(Number(id), "movie_credits");
+  console.log(similarActorMovies);
   const [showMore, setShowMore] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   let lines = 11;
@@ -31,6 +36,7 @@ const ActorDetail = () => {
 
   const [visibleCount, setVisibleCount] = useState(4);
 
+  // Media Show more
   useEffect(() => {
     const updateVisibleCount = () => {
       const width = window.innerWidth;
@@ -54,6 +60,7 @@ const ActorDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
   return (
     <>
       {isLoading && <SkeletonActorDetail />}
@@ -137,13 +144,11 @@ const ActorDetail = () => {
               )
               .map((actor: any, inx: number) => (
                 <div key={inx}>
-                  <div>
-                    <Image
-                      src={IMAGE_URL + actor?.file_path}
-                      className="min-h-[400px] min-w-[280px]"
-                      alt=""
-                    />
-                  </div>
+                  <Image
+                    src={IMAGE_URL + actor?.file_path}
+                    className=""
+                    alt=""
+                  />
                 </div>
               ))}
           </div>
@@ -153,10 +158,18 @@ const ActorDetail = () => {
                 onClick={() => setShowMore((p) => !p)}
                 className="text-[#ffffff] bg-[#000000] mt-10 rounded-[5px] h-[40px] w-[120px] hover:opacity-85 cursor-pointer dark:bg-[var(--color-py)] dark:text-[#ffffff] dark:transition-all transition-all"
               >
-                {!showMore ? "Show more" : "Hide"}
+                {!showMore ? "Read more" : "Hide"}
               </button>
             </div>
           )}
+          <Title
+            text="Similar"
+            className="text-[#000000] dark:text-[var(--color-py)] mt-[50px]"
+          />
+          <MovieViewSlider
+            data={similarActorMovies}
+            isLoading={similarActorLoading}
+          />
         </div>
       </section>
     </>

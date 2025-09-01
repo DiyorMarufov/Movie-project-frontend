@@ -28,7 +28,6 @@ interface Props {
 const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
   const navigate = useNavigate();
   const [showYearId, setShowYearId] = useState<number | null>(null);
-
   return (
     <div className={`${className}`}>
       <div className="container">
@@ -36,7 +35,7 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
           spaceBetween={20}
           navigation={true}
           modules={[Navigation]}
-          className="mySwiper custom-swiper-nav"
+          className="mySwiper custom-swiper-nav relative"
           style={
             {
               "--swiper-navigation-color": "#fff",
@@ -44,71 +43,67 @@ const MovieViewSlider: FC<Props> = ({ data, className, isLoading }) => {
             } as React.CSSProperties
           }
           breakpoints={{
-            320: {
-              slidesPerView: 1,
-            },
-            500: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-            1024: {
-              slidesPerView: 4,
-            },
+            350: { slidesPerView: 2 },
+            600: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1150: { slidesPerView: 4 },
           }}
         >
           {isLoading && <Skeleton />}
-          <div className="grid grid-cols-4 gap-5 overflow-auto movie-swiper">
-            {data?.map((movie: any) => (
-              <SwiperSlide key={movie.id} className="cursor-pointer">
-                <div
-                  onClick={() => {
-                    navigate(`/movie/${movie.id}`);
-                  }}
-                  className="h-[450px] overflow-hidden relative"
-                >
-                  <img
-                    loading="lazy"
-                    src={
-                      movie.poster_path
-                        ? `${IMAGE_URL}${movie.poster_path}`
-                        : defaultImg
-                    }
-                    alt={movie.title}
-                    className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-                    onMouseEnter={() => setShowYearId(movie.id)}
-                    onMouseLeave={() => setShowYearId(null)}
-                  />
 
+          {data?.map((movie: any) => (
+            <SwiperSlide key={movie.id} className="cursor-pointer">
+              <div
+                onClick={() => {
+                  navigate(`/movie/${movie.id}`);
+                }}
+                className="
+            relative overflow-hidden
+            min-h-[220px] sm:min-h-[280px] md:min-h-[330px] lg:min-h-[400px]"
+              >
+                <img
+                  loading="lazy"
+                  src={
+                    movie.poster_path
+                      ? `${IMAGE_URL}${movie.poster_path}`
+                      : defaultImg
+                  }
+                  alt={movie.title}
+                  className="
+              w-full h-full object-cover
+              transition-transform duration-300 ease-in-out 
+              hover:scale-105"
+                  onMouseEnter={() => setShowYearId(movie.id)}
+                  onMouseLeave={() => setShowYearId(null)}
+                />
+
+                {showYearId === movie.id && (
                   <div
-                    className={`${
-                      showYearId === movie.id
-                        ? "absolute top-2 left-2 px-2 bg-[var(--color-py)] text-[#ffffff] rounded-[10px] flex items-center justify-center dark:text-[#ffffff] transition-all"
-                        : ""
-                    }`}
+                    className="absolute top-2 left-2 px-2 bg-[var(--color-py)] 
+                text-white text-sm"
                     onMouseEnter={() => setShowYearId(movie.id)}
                     onMouseLeave={() => setShowYearId(null)}
                   >
                     <h1>{movie?.release_date.split("-")[0]}</h1>
                   </div>
-                </div>
-                <div className="bg-[white] dark:bg-[#000000] dark:transition-all transition-all">
-                  <h3
-                    className="font-medium text-[23px] line-clamp-1 dark:text-[#ffffff] dark:transition-all transition-all max-md:text-[19px]"
-                    title={movie.title}
-                  >
-                    {movie.title}
-                  </h3>
-                  <p>
-                    <span className="dark:text-[#4D4D4D] dark:transition-all transition-all">
-                      {movie?.genres.join(", ")}
-                    </span>
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </div>
+                )}
+              </div>
+
+              <div className="bg-white dark:bg-black px-1 py-2">
+                <h3
+                  className="font-medium line-clamp-1 
+              text-[16px] sm:text-[18px] md:text-[20px] lg:text-[23px] 
+              dark:text-white transition-all"
+                  title={movie.title}
+                >
+                  {movie.title}
+                </h3>
+                <p className="text-[13px] sm:text-[14px] md:text-[15px] text-gray-600 dark:text-[#4D4D4D]">
+                  {movie?.genres.join(", ")}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { memo } from "react";
 
 const SkeletonActorDetail = () => {
   return (
-    <section className="pt-7 animate-pulse">
+    <section className="pt-7 animate-pulse dark:bg-[#000000]">
       <div className="container flex flex-col">
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden gap-8 dark:bg-[#000000]">
           <div className="flex-shrink-0 w-full md:w-1/3">

@@ -11,11 +11,11 @@ export const useActors = () => {
       queryFn: () => api.get(`person/${id}`).then((res) => res.data),
     });
 
-  const getActorImagesById = (id: number, path: string) =>
+  const getActorItemsById = (id: number, path: string) =>
     useQuery({
       queryKey: [actorKey, id, path],
       queryFn: () => api.get(`person/${id}/${path}`).then((res) => res.data),
     });
 
-  return { getActorById, getActorImagesById };
+  return { getActorById, getActorItemsById };
 };

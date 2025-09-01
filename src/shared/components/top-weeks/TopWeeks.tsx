@@ -4,7 +4,7 @@ import ShowAll from "../ui/showAll";
 
 interface Props {
   text: string;
-  showAll: string;
+  showAll?: string;
 }
 
 const TopWeeks: FC<Props> = ({ text, showAll }) => {
@@ -16,7 +16,7 @@ const TopWeeks: FC<Props> = ({ text, showAll }) => {
           className="dark:text-[var(--color-py)] dark:transition-all transition-all"
         />
         <ShowAll
-          text={showAll}
+          text={showAll ?? ""}
           className="dark:text-[var(--color-py)] dark:transition-all transition-all"
         />
       </div>
