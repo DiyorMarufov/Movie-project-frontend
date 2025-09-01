@@ -7,7 +7,7 @@ interface Props {
 const Skeleton: FC<Props> = ({ count = 20 }) => {
   return (
     <section className="dark:bg-[#000000]">
-      <div className="container grid grid-cols-4 gap-5 max-[1000px]:grid-cols-3 max-[850px]:grid-cols-2 max-[520px]:grid-cols-1">
+      <div className="container grid grid-cols-4 gap-5 max-[1000px]:grid-cols-3 max-[700px]:grid-cols-2 max-[350px]:grid-cols-1">
         {Array(count)
           .fill(" ")
           ?.map((_, index) => (
