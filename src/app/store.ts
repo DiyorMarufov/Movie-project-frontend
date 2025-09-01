@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../shared/lib/features/authSlice";
-import signInSlice from "../shared/lib/features/signinSlice";
+import favoriteSlice from "../shared/lib/features/favoriteSlice";
+import toggleLikes  from "../shared/lib/features/likesSlice";
 
 export const store = configureStore({
   reducer: {
-    authSlice,
-    signInSlice,
+    favoriteSlice,
+    toggleLikes
   },
 });
 

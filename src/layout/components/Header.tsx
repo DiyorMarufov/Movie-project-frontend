@@ -91,7 +91,7 @@ const Header = () => {
 
           <li className="px-4.5">
             <NavLink
-              to={"/sc"}
+              to={"/favorite-movie"}
               className={({ isActive }) =>
                 `${
                   isActive
