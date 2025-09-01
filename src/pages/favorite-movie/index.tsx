@@ -1,10 +1,14 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import MovieView from "../../shared/components/movie-view/MovieView";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 
 const FavoriteMovie = () => {
   const data = useSelector((state: RootState) => state.favoriteSlice.value);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [data]);
   return (
     <div className="container">
       {data.length > 0 ? (
