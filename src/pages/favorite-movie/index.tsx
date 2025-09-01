@@ -11,7 +11,7 @@ const FavoriteMovie = () => {
         <MovieView data={data} />
       ) : (
         <div className="h-[49vh] flex items-center justify-center">
-          <div className="font-medium text-[23px] dark:text-[var(--color-py)]">
+          <div className="font-medium text-[23px] dark:text-[var(--color-py)] max-sm:text-[17px]">
             Nothing is here, Add your movie to favorite
           </div>
         </div>

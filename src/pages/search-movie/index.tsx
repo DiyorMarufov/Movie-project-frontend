@@ -42,7 +42,7 @@ const SearchMovie = () => {
       ) : (
         <div className="h-[43vh] flex items-center justify-center">
           <div className="text-[30px] max-[600px]:text-[25px]">
-            <h1>Search movie...</h1>
+            <h1 className="dark:text-[var(--color-py)]">Search movie...</h1>
           </div>
         </div>
       )}

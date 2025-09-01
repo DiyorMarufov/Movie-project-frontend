@@ -60,7 +60,7 @@ const MovieView: FC<Props> = ({ data, className, isLoading }) => {
                   className="absolute top-1 right-1 p-2 bg-[var(--color-py)] rounded-[100px] hover:opacity-80"
                 >
                   <Bookmark
-                    className={`text-[#ffffff] ${
+                    className={`text-[#ffffff] max-sm:h-[20px] max-sm:w-[20px] ${
                       likes.includes(movie.id)
                         ? "fill-[#ffffff]"
                         : "fill-[var(--color-py)]"
